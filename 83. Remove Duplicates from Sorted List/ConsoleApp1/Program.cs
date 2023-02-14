@@ -18,7 +18,7 @@ namespace ConsoleApp1
                 this.next = next;
             }
         }
-        public static ListNode DeleteDuplicates(ListNode head)
+        public static ListNode DeleteDuplicates(ListNode head)      //浪费时间和空间。
         {
             if (head == null || head.next == null)
             {
@@ -44,7 +44,33 @@ namespace ConsoleApp1
                 }
             }
             return head;
+        }//Runtime 97 ms Beats 37.89% Memory 39.9 MB Beats 44.24%
+        public ListNode DeleteDuplicates1(ListNode head)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            else if (head.next == null)
+            {
+                return head;
+            }
+            ListNode cur = head;
+            while (cur != null)
+            {
+                if (cur.next != null && cur.val == cur.next.val)
+                {
+                    cur.next = cur.next.next;
+                }
+                else
+                {
+                    cur = cur.next;
+                }
+            }
+            return head;
         }
+        //执行用时：76 ms, 在所有 C# 提交中击败了93.63%的用户
+        //内存消耗：39.2 MB, 在所有 C# 提交中击败了20.59%的用户
         static void Main(string[] args)
         {
             ListNode List1 = ListToListNode(new List<int> { 1, 1, 2 });
