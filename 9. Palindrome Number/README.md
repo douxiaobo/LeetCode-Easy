@@ -30,7 +30,7 @@ Given an integer x, return true if x is a
 $-2^{31} <= x <= 2^{31} - 1$
  
 
-**Follow up:** Could you solve it without converting the integer to a string?
+**Follow up:** Could you solve it without converting the integer to a string?<br>
 **进阶**
 你能不将整数转为字符串来解决这个问题吗？
 

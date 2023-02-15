@@ -21,7 +21,70 @@ namespace ConsoleApp1
                     j++;
                 }
             }
-        }
+        }//Runtime:170ms, Beats:69.63%; Memory:54MB, Beats:37.41%
+        public void MoveZeroes1(int[] nums)
+        {
+            int i = 0, j = 0;
+            while (i < nums.Length)
+            {
+                if (nums[i] != 0)
+                {
+                    int tmp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = tmp;
+                    j++;
+                }
+                i++;
+            }
+        }//Runtime:180ms, Beats:49.91%; Memory:54.3MB, Beats:12.68%
+        public void MoveZeroes2(int[] nums)
+        {
+            int index = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    index++;
+                }
+                else if (index > 0)
+                {
+                    int tmp = nums[i];
+                    nums[i] = 0;
+                    nums[i - index] = tmp;
+                }
+            }
+        }//Runtime:165ms, Beats:80.63%; Memory:54.1MB, Beats:37.41%
+        public void MoveZeroes3(int[] nums)
+        {
+            int index = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    index++;
+                }
+                else if (index > 0)
+                {
+                    nums[i - index] = nums[i];
+                    nums[i] = 0;
+                }
+            }
+        }//Runtime:186 ms, Beats:42.71% ; Memory:54.2 MB, Beats: 12.68%.
+        public void MoveZeroes4(int[] nums)
+        {
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] == 0 && nums[j] != 0)
+                    {
+                        nums[i] = nums[j];
+                        nums[j] = 0;
+                        break;
+                    }
+                }
+            }
+        }//Runtime:214 ms, Beats:30.43%; Memory:54.3 MB, Beats:6.17%
         static void Main(string[] args)
         {
             int[] nums1 = { 0, 1, 0, 3, 12 };
