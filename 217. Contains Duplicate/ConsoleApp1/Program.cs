@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -79,7 +80,81 @@ namespace ConsoleApp1
             //Console.WriteLine(ContainsDuplicate1(nums4));
             Console.ReadKey();
         }
-        
-
+        public bool ContainsDuplicate2(int[] nums)
+        {
+            Array.Sort(nums);
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] == nums[i + 1])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }//Runtime 212 ms Beats 54.52% Memory 53.3 MB Beats 36.70%
+        public bool ContainsDuplicate_Hashtable(int[] nums)
+        {
+            Hashtable ht = new Hashtable();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (ht.ContainsKey(nums[i]))
+                {
+                    return true;
+                }
+                else
+                {
+                    ht.Add(nums[i], nums[i]);
+                }
+            }
+            return false;
+        }//Runtime 218 ms Beats 44.49% Memory 58.8 MB Beats 5.22%
+        public bool ContainsDuplicate_HashSet(int[] nums)
+        {
+            HashSet<int> st = new HashSet<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (st.Contains(nums[i]))
+                {
+                    return true;
+                }
+                else
+                {
+                    st.Add(nums[i]);
+                }
+            }
+            return false;
+        }//Runtime 212 ms Beats 54.52% Memory 55.1 MB Beats 14.60%
+        public bool ContainsDuplicate_List(int[] nums)
+        {
+            List<int> lt = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (lt.Contains(nums[i]))
+                {
+                    return true;
+                }
+                else
+                {
+                    lt.Add(nums[i]);
+                }
+            }
+            return false;
+        }//Runtime 2478 ms Beats 12.2% Memory 53.2 MB Beats 42.50%
+        public bool ContainsDuplicate_Dictionary(int[] nums)
+        {
+            Dictionary<int, int> dt = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dt.ContainsKey(nums[i]))
+                {
+                    return true;
+                }
+                else
+                {
+                    dt.Add(nums[i], nums[i]);
+                }
+            }
+            return false;
+        }//Runtime 210 ms Beats 57.68% Memory 54.2 MB Beats 18.47%
     }
 }

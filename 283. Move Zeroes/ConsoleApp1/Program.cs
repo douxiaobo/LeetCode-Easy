@@ -102,5 +102,20 @@ namespace ConsoleApp1
             foreach (int i in nums) { Console.Write(i + " "); }
             Console.WriteLine();
         }
+        public void MoveZeroes5(int[] nums)
+        {
+            int slow = 0;
+            for (int fast = 0; fast < nums.Length; fast++)
+            {
+                if (nums[fast] != 0)
+                {
+                    nums[slow++] = nums[fast];
+                }
+            }
+            while (slow < nums.Length)
+            {
+                nums[slow++] = 0;
+            }
+        }//Runtime 162 ms Beats 82.27% Memory 54 MB Beats 40%
     }
 }

@@ -39,5 +39,33 @@ namespace ConsoleApp1
             Console.WriteLine(IsPalindrome("0P"));  //缺少数字的考虑，就增加数字范围。
             Console.ReadKey();
         }
+        public bool IsPalindrome_TwoPointers(string s)
+        {
+            s = s.ToLower();
+            int left = 0, right = s.Length - 1;
+            while (left <= right)
+            {
+                if (!((s[left] >= 'a' && s[left] <= 'z') || (s[left] >= '0' && s[left] <= '9')))    //不能使用while，只能使用if。
+                {
+                    left++;
+                    continue;
+                }
+                if (!((s[right] >= 'a' && s[right] <= 'z') || (s[right] >= '0' && s[right] <= '9')))
+                {
+                    right--;
+                    continue;
+                }
+                if (s[left] != s[right])
+                {
+                    return false;
+                }
+                else
+                {
+                    left++;
+                    right--;
+                }
+            }
+            return true;
+        }
     }
 }
