@@ -71,5 +71,47 @@ namespace ConsoleApp1
             Console.WriteLine(IsValid(s6));
             Console.ReadKey();
         }
+        public bool IsValid1(string s)
+        {
+            Stack<char> st = new Stack<char>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                {
+                    st.Push(s[i]);
+                }
+                else if (st.Count == 0 && (s[i] == ')' || s[i] == '}' || s[i] == ']'))
+                {
+                    return false;
+                }
+                else
+                {
+                    if (s[i] == ')' && st.Peek() == '(')
+                    {
+                        st.Pop();
+                    }
+                    else if (s[i] == '}' && st.Peek() == '{')
+                    {
+                        st.Pop();
+                    }
+                    else if (s[i] == ']' && st.Peek() == '[')
+                    {
+                        st.Pop();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            if (st.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
