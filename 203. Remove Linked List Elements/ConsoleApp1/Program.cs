@@ -102,5 +102,24 @@ namespace ConsoleApp1
             }
             Console.WriteLine();
         }
+        public ListNode RemoveElements1(ListNode head, int val)
+        {
+            ListNode dummyHead = new ListNode();
+            dummyHead.next = head;
+            ListNode cur = dummyHead;
+            while (cur.next != null)
+            {
+                if (cur.next.val == val)
+                {
+                    cur.next = cur.next.next;
+                }
+                else
+                {
+                    cur = cur.next;
+                }
+            }
+            head = dummyHead.next;
+            return head;
+        }
     }
 }

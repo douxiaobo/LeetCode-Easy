@@ -87,5 +87,19 @@ namespace ConsoleApp1
             Console.WriteLine(MissingNumber(nums4));        //1
             Console.ReadKey();
         }
+        public int MissingNumber6(int[] nums)
+        {
+            int result = 0;
+            Array.Sort(nums);
+            for (int i = nums.Length - 1; i >= 0; i--)
+            {
+                if (nums[i] != i + 1)
+                {
+                    result = i + 1;
+                    break;
+                }
+            }
+            return result;
+        }//Runtime:101 ms Beats:79.18% Memory:43.8 MB Beats:47.99%
     }
 }

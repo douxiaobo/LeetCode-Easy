@@ -193,5 +193,103 @@ namespace ConsoleApp1
             }
             return head;
         }
+        public ListNode ReverseList13(ListNode head)    //双指针法
+        {
+            ListNode pre = null;
+            ListNode cur = head;
+            ListNode temp;
+            while (cur != null)
+            {
+                temp = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = temp;
+            }
+            return pre;
+        }//Runtime:83 ms Beats:78.9% Memory:38.8 MB Beats:74.91%
+        public ListNode ReverseList14(ListNode head)    //递归法
+        {
+            return reverse(null, head);
+        }
+        ListNode reverse(ListNode pre, ListNode cur)
+        {
+            if (cur == null)
+            {
+                return pre;
+            }
+            ListNode temp = cur.next;
+            cur.next = pre;
+            return reverse(cur, temp);
+        }//Runtime:81 ms Beats:85.83% Memory:39.3 MB Beats:5.4%
+        public ListNode ReverseList15(ListNode head)    //从后往前翻转指针指向方法
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            if (head.next == null)
+            {
+                return head;
+            }
+            ListNode last = ReverseList15(head.next);
+            head.next.next = head;
+            head.next = null;
+            return last;
+        }//Runtime:98 ms Beats:9.59% Memory:38.8 MB Beats:74.91%
+        public ListNode ReverseList16(ListNode head)    //使用虚拟头结点，通过头插法实现链表的翻转。
+        {
+            ListNode dumpyHead = new ListNode(-1);
+            dumpyHead.next = null;
+            ListNode cur = head;
+            while (cur != null)
+            {
+                ListNode temp = cur.next;
+                cur.next = dumpyHead.next;
+                dumpyHead.next = cur;
+                cur = temp;
+            }
+            return dumpyHead.next;
+        }//Runtime：94 ms Beats：22.30% Memory：38.7 MB Beats：84.30%
+        public ListNode ReverseList17(ListNode head)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            if (head.next == null)
+            {
+                return head;
+            }
+            Stack<ListNode> stack = new Stack<ListNode>();
+            ListNode cur = head;
+            while (cur != null)
+            {
+                stack.Push(cur);
+                cur = cur.next;
+            }
+            ListNode pHead = new ListNode();
+            cur = pHead;
+            while (stack.Count != 0)
+            {
+                ListNode node = stack.Pop();
+                cur.next = node;
+                cur = cur.next;
+            }
+            cur.next = null;
+            return pHead.next;
+        }//Runtime：83 ms Beats：78.9% Memory：38.9 MB Beats：61.90%
+        public ListNode ReverseList8(ListNode head)
+        {
+            ListNode prev = null;
+            ListNode cur = head;
+            while (cur != null)
+            {
+                ListNode next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+            return prev;
+        }//Runtime:90 ms Beats:40.54% Memory:39.2 MB Beats:17.66%
     }
 }

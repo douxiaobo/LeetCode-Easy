@@ -45,7 +45,7 @@ namespace ConsoleApp1
                 }
             }
             return nums.ToArray();
-        }
+        }//Runtime:145 ms Beats:56.87% Memory:42.7 MB Beats:87.21%
         static void Main(string[] args)
         {
             int[] nums1 = Intersection(new int[]{1,2,2,1 }, new int[]{2,2 });       //2
@@ -62,5 +62,55 @@ namespace ConsoleApp1
             }
             Console.WriteLine();
         }
+        public int[] Intersection1(int[] nums1, int[] nums2)
+        {
+            List<int> result = new List<int>();
+            HashSet<int> hs = new HashSet<int>();
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                if (hs.Contains(nums1[i]))
+                {
+                    continue;
+                }
+                else
+                {
+                    hs.Add(nums1[i]);
+                }
+            }
+            for (int i = 0; i < nums2.Length; i++)
+            {
+                if (hs.Contains(nums2[i]) && !result.Contains(nums2[i]))
+                {
+                    result.Add(nums2[i]);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return result.ToArray();
+        }//Runtime:130 ms Beats:96.18% Memory:42.7 MB Beats:87.21%
+        public int[] Intersection2(int[] nums1, int[] nums2)
+        {
+            List<int> result = new List<int>();
+            int[] hash = new int[1000];
+            for (int i = 0; i < 1000; i++)
+            {
+                hash[i] = 0;
+            }
+            foreach (int num in nums1)
+            {
+                hash[num] = 1;
+            }
+            foreach (int num in nums2)
+            {
+                if (hash[num] == 1 && !result.Contains(num))
+                {
+                    result.Add(num);
+                }
+            }
+            return result.ToArray();
+
+        }//Runtime:128 ms Beats:97.71% Memory:43.3 MB Beats:30.73%
     }
 }

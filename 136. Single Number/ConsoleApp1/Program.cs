@@ -27,5 +27,14 @@ namespace ConsoleApp1
             Console.WriteLine(SingleNumber(nums3));
             Console.ReadKey();
         }
+        public int SingleNumber1(int[] nums)
+        {
+            int result = 0;
+            foreach (int num in nums)
+            {
+                result ^= num;
+            }
+            return result;
+        }
     }
 }

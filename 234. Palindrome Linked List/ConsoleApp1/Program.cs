@@ -67,5 +67,52 @@ namespace ConsoleApp1
             }
             return head;
         }
+        public bool IsPalindrome1(ListNode head)
+        {
+            if (head == null || head.next == null)
+            {
+                return true;
+            }
+            ListNode slow = head;
+            ListNode fast = head.next;
+            while (fast.next != null && fast.next.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            ListNode secondHalf = slow.next;
+            if (fast.next != null)
+            {
+                secondHalf = slow.next.next;
+            }
+            slow.next = null;
+            return equals(secondHalf, reverseList(head));
+        }
+        private bool equals(ListNode head1, ListNode head2)
+        {
+            while (head1 != null && head2 != null)
+            {
+                if (head1.val != head2.val)
+                {
+                    return false;
+                }
+                head1 = head1.next;
+                head2 = head2.next;
+            }
+            return head1 == null && head2 == null;
+        }
+        private ListNode reverseList(ListNode head)
+        {
+            ListNode prev = null;
+            ListNode cur = head;
+            while (cur != null)
+            {
+                ListNode next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+            return prev;
+        }//Runtime：242 ms Beats：72.79% Memory:62 MB Beats:63.88%
     }
 }

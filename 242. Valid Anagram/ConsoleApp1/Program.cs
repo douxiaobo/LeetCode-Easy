@@ -76,5 +76,50 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
         }
+        public bool IsAnagram(string s, string t)
+        {
+            int[] record = new int[26];
+            for (int i = 0; i < 26; i++)
+            {
+                record[i] = 0;
+            }
+            for (int i = 0; i < s.Length; i++)
+            {
+                record[s[i] - 'a']++;
+            }
+            for (int i = 0; i < t.Length; i++)
+            {
+                record[t[i] - 'a']--;
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                if (record[i] != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }//Runtime:79 ms Beats:76.14% Memory:39.9 MB Beats:50.76%
+        public bool IsAnagram1(string s, string t)
+        {
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+            int[] counts = new int[26];
+            foreach (char ch in s)
+            {
+                counts[ch - 'a']++;
+            }
+            foreach (char ch in t)
+            {
+                if (counts[ch - 'a'] == 0)
+                {
+                    return false;
+                }
+                counts[ch - 'a']--;
+            }
+            return true;
+        }//Runtime:63 ms Beats:99.53% Memory:39.7 MB Beats:84.67%
     }
 }

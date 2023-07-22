@@ -60,5 +60,15 @@ namespace ConsoleApp1
             Console.WriteLine(HammingWeight(n3));
             Console.ReadKey();
         }
+        public int HammingWeight1(uint n)
+        {
+            uint result = 0;
+            while (n > 0)
+            {
+                result += n % 2;
+                n = n / 2;
+            }
+            return (int)result;
+        }//Runtime:21 ms Beats:80.13% Memory:23.8 MB Beats:55.64%
     }
 }
